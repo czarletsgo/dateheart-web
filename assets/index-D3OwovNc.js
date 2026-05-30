@@ -4105,6 +4105,12 @@ void main() {
   <div class="app-shell">
     <header class="topbar">
       <div class="topbar-actions">
+        <button class="icon-button filter-action" id="filterActionButton" type="button" aria-label="Filters" title="Filters">
+          ${lf(`sliders`)}
+          <span class="sr-only" id="filterActionKicker">Category</span>
+          <strong class="sr-only" id="filterActionLabel">All</strong>
+          <small class="sr-only" id="filterActionDetail"></small>
+        </button>
         <button class="icon-button" id="historyButton" type="button" aria-label="History" title="History">
           ${lf(`history`)}
         </button>
@@ -4130,11 +4136,6 @@ void main() {
 
     <main class="stage" aria-labelledby="stageTitle">
       <p class="counter" id="ideaCounter"></p>
-      <button class="filter-action" id="filterActionButton" type="button">
-        <span id="filterActionKicker">Category</span>
-        <strong id="filterActionLabel">All</strong>
-        <small id="filterActionDetail"></small>
-      </button>
       <h2 class="sr-only" id="stageTitle">Pull a date cue</h2>
       <div class="heart-wrap">
         <button class="heart-button" id="heartButton" type="button" aria-label="Tap the heart for a date cue">
@@ -4276,7 +4277,7 @@ void main() {
           </span>
           <span class="choice-check" aria-hidden="true">${e===n?lf(`check`):``}</span>
         </button>
-      `}).join(``),e.querySelectorAll(`.choice-button`).forEach(e=>{e.addEventListener(`click`,()=>{r(e.dataset.value),op()})})}function rp(){np(Z.categoryChips,su,Df.category,e=>{Df={...Df,category:e},ip()}),np(Z.budgetChips,cu,Df.budget,e=>{Df={...Df,budget:e},ip()}),np(Z.durationChips,lu,Df.duration,e=>{Df={...Df,duration:e},ip()})}function ip(){ff(tf.filters,Df),rp(),ap()}function ap(){let e=gf(),t=[Df.category===`All`?``:Zd(`category`,Df.category,Q),Df.budget===`All`?``:Zd(`budget`,Df.budget,Q,e),Df.duration===`All`?``:Zd(`duration`,Df.duration,Q)].filter(Boolean).join(` · `);Z.ideaCounter.textContent=t||$.ready,op()}function op(){let e=gf(),t=Df.category===`All`?`${$.all} ${$.category}`:Zd(`category`,Df.category,Q),n=[Df.budget===`All`?``:Zd(`budget`,Df.budget,Q,e),Df.duration===`All`?``:Zd(`duration`,Df.duration,Q)].filter(Boolean);Z.filterActionKicker.textContent=$.filters,Z.filterActionLabel.textContent=t,Z.filterActionDetail.textContent=n.join(` · `),Z.filterActionButton.setAttribute(`aria-label`,`${$.filters}: ${t}`),Z.filterPanelSummary.textContent=[t,...n].join(` · `)}function sp(){let e=(Mf===`history`?Of:[...kf]).map(e=>Cu.find(t=>t.id===e)).filter(Boolean);if(document.querySelector(`#libraryTitle`).textContent=Mf===`history`?$.history:$.favorites,e.length===0){Z.ideaList.innerHTML=`<p class="empty-state">${Mf===`history`?$.emptyHistory:$.emptyFavorites}</p>`;return}Z.ideaList.innerHTML=e.map(e=>{let t=gf(),n=$d(e,Q,t);return`
+      `}).join(``),e.querySelectorAll(`.choice-button`).forEach(e=>{e.addEventListener(`click`,()=>{r(e.dataset.value),op()})})}function rp(){np(Z.categoryChips,su,Df.category,e=>{Df={...Df,category:e},ip()}),np(Z.budgetChips,cu,Df.budget,e=>{Df={...Df,budget:e},ip()}),np(Z.durationChips,lu,Df.duration,e=>{Df={...Df,duration:e},ip()})}function ip(){ff(tf.filters,Df),rp(),ap()}function ap(){let e=gf(),t=[Df.category===`All`?``:Zd(`category`,Df.category,Q),Df.budget===`All`?``:Zd(`budget`,Df.budget,Q,e),Df.duration===`All`?``:Zd(`duration`,Df.duration,Q)].filter(Boolean).join(` · `);Z.ideaCounter.textContent=t||$.ready,op()}function op(){let e=gf(),t=Df.category===`All`?`${$.all} ${$.category}`:Zd(`category`,Df.category,Q),n=[Df.budget===`All`?``:Zd(`budget`,Df.budget,Q,e),Df.duration===`All`?``:Zd(`duration`,Df.duration,Q)].filter(Boolean);Z.filterActionKicker.textContent=$.filters,Z.filterActionLabel.textContent=t,Z.filterActionDetail.textContent=n.join(` · `);let r=[t,...n].join(` · `);Z.filterActionButton.setAttribute(`aria-label`,`${$.filters}: ${r}`),Z.filterActionButton.title=`${$.filters}: ${r}`,Z.filterActionButton.classList.toggle(`active`,Df.category!==`All`||Df.budget!==`All`||Df.duration!==`All`),Z.filterPanelSummary.textContent=r}function sp(){let e=(Mf===`history`?Of:[...kf]).map(e=>Cu.find(t=>t.id===e)).filter(Boolean);if(document.querySelector(`#libraryTitle`).textContent=Mf===`history`?$.history:$.favorites,e.length===0){Z.ideaList.innerHTML=`<p class="empty-state">${Mf===`history`?$.emptyHistory:$.emptyFavorites}</p>`;return}Z.ideaList.innerHTML=e.map(e=>{let t=gf(),n=$d(e,Q,t);return`
         <button class="idea-row" type="button" data-id="${e.id}">
           <span>${Zd(`category`,e.category,Q)} · ${Zd(`budget`,e.budget,Q,t)}</span>
           <strong>${n.title}</strong>
